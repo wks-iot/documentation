@@ -1,0 +1,46 @@
+A. Diagram all_bb.png
+Resistor 100 Om for LED
+Resistor 10 kOm as pullup for DHT11
+
+B. Template for all angular programs:
+
+---
+#include <Arduino.h>
+
+void setup()
+{
+
+}
+
+void loop()
+{
+
+}
+---
+
+1. git branch: 01-led
+
+1.1. Writing information to serial port
+- configure Serial in setup()
+Serial.begin(9600);
+
+- writing information
+Serial.print("Temperature: ");
+Serial.println(t);
+
+1.2. switching off/on led
+- configure output in setup()
+pinMode(D1, OUTPUT);
+
+- switching on/off led
+digitalWrite(LED_PIN, HIGH);
+digitalWrite(LED_PIN, LOW);
+
+- sleep in ms
+delay(1000);
+
+2. git branch: 02-dht
+
+3. git branch: 03-pub
+
+4. git branch: 04-sub
