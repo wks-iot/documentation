@@ -20,15 +20,15 @@ void loop()
 
 1. git branch: 01-led
 
-1.1. Write information to serial port
+1.1. Write information to serial port (see https://www.arduino.cc/reference/en/language/functions/communication/serial/)
 - configure Serial in setup()
 Serial.begin(9600);
 
-- write information
+- write information 
 Serial.print("Temperature: ");
 Serial.println(t);
 
-1.2. switch off/on led
+1.2. switch off/on led (see https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/)
 - configure output in setup()
 pinMode(D1, OUTPUT);
 
@@ -41,7 +41,7 @@ delay(1000);
 
 2. git branch: 02-dht
 
-2.2. Add DHT library
+2.2. Add DHT library (see https://platformio.org/lib/show/19/DHT%20sensor%20library/installation)
 - add libraries to platformio.ini
 
 lib_deps =
@@ -50,10 +50,7 @@ lib_deps =
 
 - we have to add both libraries, because "DHT sensor library" needs "Adafruit Unified Sensor" and platformio per default does not import dependency, see http://docs.platformio.org/en/latest/librarymanager/ldf.html#dependency-finder-mode
 
-2.3. Read temperature and humidity
-
-- see example: https://platformio.org/lib/show/19/DHT%20sensor%20library
-
+2.3. Read temperature and humidity (see https://platformio.org/lib/show/19/DHT%20sensor%20library)
 
 3. git branch: 03-pub
 
