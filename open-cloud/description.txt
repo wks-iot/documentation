@@ -41,7 +41,7 @@ delay(1000);
 
 2. git branch: 02-dht
 
-2.2. Add DHT library (see https://platformio.org/lib/show/19/DHT%20sensor%20library/installation)
+2.1. Add DHT library (see https://platformio.org/lib/show/19/DHT%20sensor%20library/installation)
 - add libraries to platformio.ini
 
 lib_deps =
@@ -50,8 +50,57 @@ lib_deps =
 
 - we have to add both libraries, because "DHT sensor library" needs "Adafruit Unified Sensor" and platformio per default does not import dependency, see http://docs.platformio.org/en/latest/librarymanager/ldf.html#dependency-finder-mode
 
-2.3. Read temperature and humidity (see https://platformio.org/lib/show/19/DHT%20sensor%20library)
+2.2. Read temperature and humidity (see https://platformio.org/lib/show/19/DHT%20sensor%20library)
 
 3. git branch: 03-pub
 
+3.1. Add Adafruit IO library (see https://platformio.org/lib/show/714/Adafruit%20IO%20Arduino/installation)
+- add libraries to platformio.ini
+
+lib_deps =
+    Adafruit IO Arduino
+    Adafruit MQTT Library
+    ArduinoHttpClient
+    ESP8266WiFi
+
+3.2. Create account at https://io.adafruit.com
+
+3.3. Prepare AIO Key (user, key) for your account
+
+3.4. Get WiFi SSID and password
+
+3.5. Publish data
+
+- configure AdafruitIO_WiFi (once in application)
+
+AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
+
+- configure feed (once in application)
+
+AdafruitIO_Feed *feed = io.feed(FEED);
+
+- connect to Adafruit IO in setup()
+
+io.connect();
+
+- handle Adafruit IO communication in loop()
+
+io.run();
+
+- publish
+
+feed->save(temperature);
+
 4. git branch: 04-sub
+
+- register handler in setup()
+
+feed->onMessage(handler);
+
+- implement handler
+
+void handler(AdafruitIO_Data *data)
+{
+  Serial.print("Received data: ");
+  Serial.println(data->value());
+}
