@@ -1,8 +1,14 @@
-A. Diagram all_bb.png
+A. Extension for Visual Studio Code: PlatformIO IDE
+
+B. Diagrams in http://fritzing.org
+- package with DHT11: Fritzing-Library-master.zip
+- package with NodeEmu: esp8266-nodemcu-v3.zip
+
+C. Diagram all_bb.png
 Resistor 100 Om for LED
 Resistor 10 kOm as pullup for DHT11
 
-B. Template for all angular programs:
+D. Template for all angular programs:
 
 ---
 #include <Arduino.h>
